@@ -1,20 +1,26 @@
+package com.gmail.vyazankin.pavel
 /**
  * @author pvyazankin
  * @since 14/08/2011
  */
 
-import javax.mail.internet.*;
-import javax.mail.*
-import javax.activation.*
+import javax.activation.DataHandler
+import javax.activation.FileDataSource
+import javax.mail.Multipart
+import javax.mail.Session
+import javax.mail.Transport
+import javax.mail.internet.InternetAddress
+import javax.mail.internet.MimeBodyPart
+import javax.mail.internet.MimeMessage
+import javax.mail.internet.MimeMultipart
 
-class GmailMailSender {
+class HostcommMailSender {
 
   public static void main(String[] args) {
 
     if (args.length ==0 || args[0].equals("help")) {
-      println("GmailMailSender usage:\nGmailMailSender Tos subject body [attachmentPath]")
+      println("HostcommMailSender usage:\nHostcommMailSender Tos subject body [attachmentPath]")
       System.exit(0)
-
     }
 
     def tos = args[0]
@@ -27,10 +33,10 @@ class GmailMailSender {
 
     Properties props = new Properties();
 
-    def host = "smtp.gmail.com"
-    def user = "pavel.vyazankin@gmail.com"
-    def password = "kiskirwarkan"
-    def port = 587
+    def host = "mail.hostcomm.ru"
+    def user = "pvyazankin@hostcomm.ru"
+    def password = "killa11"
+    def port = 465
 
     props.put("mail.smtp.host", host);
     props.put("mail.smtp.port", port);
@@ -39,7 +45,7 @@ class GmailMailSender {
     props.put("mail.smtp.auth", "true");
     props.put("mail.smtps.auth", "true");
     props.put("mail.smtp.starttls.enable", "true");
-    props.put("mail.smtp.debug", "true");
+//    props.put("mail.smtp.debug", "false");
 
     props.put("mail.smtp.socketFactory.port", port);
     props.put("mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
